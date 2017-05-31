@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsSamplePro</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<%= link_to "Add User", new_user_path %>
+  	<%= link_to "List Users", users_path %>
+  	<%= link_to "Add Role", new_role_path %>
+  	<%= link_to "List Roles", roles_path %>
+    <%= select_tag :role_id, options_from_collection_for_select(Role.all, 'id', 'name'), :prompt => "Please select", :onchange=>'myFunc(this.value)'  %>
+
+    <%= yield %>
+
+    <script type="text/javascript">
+      function myFunc(value) {
+        window.location.href = "http://" +window.location.host + "/filter_users?role_id="+value
+      }
+    </script>
+  </body>
+</html>

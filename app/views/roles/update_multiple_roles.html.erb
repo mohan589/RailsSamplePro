@@ -1,0 +1,21 @@
+<%= form_for :role, :url => edit_multiple_roles_path, :method => :put do |form| %>
+  <ul>
+  	<% @roles.each do |role| %>
+  		<%= hidden_field_tag "role[]", role.id %>
+  		<li><%= role.name %></li>
+  	<% end %>
+  </ul>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :role_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.check_box :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
